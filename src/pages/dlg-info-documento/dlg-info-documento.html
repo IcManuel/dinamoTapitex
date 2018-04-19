@@ -1,0 +1,65 @@
+
+<ion-header>
+  <ion-navbar (color)="primary">
+    <ion-title>Documento</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cerrar()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="text-align: left">
+        {{doc.doctran}}
+      </ion-col>
+      <ion-col style="text-align: right">
+        #Pag {{doc.numpago}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="text-align: left">
+        {{doc.fechaemi}}
+      </ion-col>
+      <ion-col style="text-align: right">
+        {{doc.fechaven}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="text-align: left">
+        Monto: 
+      </ion-col>
+      <ion-col style="text-align: right">
+        {{formateo(doc.monto,2)}}
+      </ion-col>
+    </ion-row>
+     <ion-row>
+      <ion-col style="text-align: left">
+        Monto Cancelado: 
+      </ion-col>
+      <ion-col style="text-align: right">
+        {{formateo(doc.cancelado,2)}}
+      </ion-col>
+    </ion-row>
+     <ion-row>
+      <ion-col style="text-align: left">
+        Cancelación en ruta: 
+      </ion-col>
+      <ion-col style="text-align: right">
+        {{formateo(doc.acancelar,2)}}
+      </ion-col>
+    </ion-row>
+     <ion-row>
+      <ion-col style="text-align: left">
+        Saldo: 
+      </ion-col>
+      <ion-col style="text-align: right">
+        {{formateo(doc.saldo,2)}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

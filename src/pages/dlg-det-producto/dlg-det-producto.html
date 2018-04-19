@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="doYourStuff()">
+          <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>      
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid >
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Nombre: 
+      </ion-col>
+      <ion-col style="text-align: right;">
+        {{producto.nombre}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Stock: 
+      </ion-col>
+      <ion-col style="text-align: right;">
+        {{formateo(producto.stock,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Precio (-)iva: 
+      </ion-col>
+      <ion-col style="text-align: right;">
+        $ {{formateo(producto.precio,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Precio iva: 
+      </ion-col>
+      <ion-col style="text-align: right;">
+        $ {{formateo(producto.precioIva,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black;vertical-align: bottom">
+        Cantidad: 
+      </ion-col>
+      <ion-col ion-item> 
+        <ion-input (ionFocus)="clickCantidad()" (ionChange)="ingresoCantidad()" style="height: 12px;font-size: 12px;text-align: right" type="number" [(ngModel)]="cantidad" style="max-width: 100%;" #intCantidad></ion-input>
+      </ion-col>
+      <ion-col col-auto >
+        <button ion-button round style="font-size: 15px;" item-end (click)="agregarDetalle2()">
+          <ion-icon name="add-circle"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="!catalogo" >
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Descuento (%): 
+      </ion-col>
+      <ion-col ion-item> 
+        <ion-input (ionChange)="ingresoCantidad()" type="number" [(ngModel)]="descuento" style="max-width: 100%"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin-top: 10px;">
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Total: 
+      </ion-col>
+      <ion-col style="text-align: right; font-size: 15px; font-weight: bold">
+      $ {{formateo(total,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Unidad: 
+      </ion-col>
+      <ion-col> 
+        <ion-select (ionChange)="calcularTotal()" [disabled]="disabled" [(ngModel)]="producto.umedida" interface="popover" style="max-width: 100%;">
+          <ion-option *ngFor="let uni of unidades" [value] = "uni.id_unidad">{{uni.nombre_unidad}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="!catalogo" >
+        <ion-col style="font-weight: bold; white-space: normal;color:black">
+          Bodega: 
+        </ion-col>
+        <ion-col> 
+          <ion-select [(ngModel)]="bodega" interface="popover" style="max-width: 100%;">
+            <ion-option *ngFor="let bod of bodegas" [value] = "bod.id">{{bod.nombre}}</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Empaque:  
+      </ion-col>
+      <ion-col style=" white-space: normal;color:black">
+          {{producto.empaque}} 
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col style="font-weight: bold; white-space: normal;color:black">
+          Promoción:  
+        </ion-col>
+        <ion-col style=" white-space: normal;color:black">
+            {{producto.promoDescripcion}} 
+        </ion-col>
+      </ion-row>
+    
+    <ion-item>
+      <ion-textarea [(ngModel)]="observaciones" placeholder="Observaciones">
+      </ion-textarea>
+    </ion-item>
+    <ion-row>
+      <ion-col width-50>
+        <ion-slides class="image-slider" loop="true" slidesPerView="2">
+          <ion-slide *ngFor="let img of imagenes">
+              <img [src]="img.mostrar" class="thumb-img" imageViewer> 
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+      <ion-col width-50>
+          <ion-slides class="image-slider" loop="true" slidesPerView="2">
+            <ion-slide *ngFor="let mod of modelosProducto">
+                <img [src]="mod.mostrar" class="thumb-img" imageViewer> 
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<ion-textarea rows="10" style="max-width: 100% ;text-align: justify; font-size: 15px; color: black" [(ngModel)] = "producto.fichatecnica" [disabled]="true" > 
+</ion-textarea>
+</ion-content>

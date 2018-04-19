@@ -1,0 +1,11 @@
+<ion-header>
+    <ion-navbar >
+    </ion-navbar>
+  </ion-header>
+<ion-content padding>
+  <ion-tabs  primary>
+    <ion-tab [root]="tabCliente" [rootParams]="params" tabTitle="Cliente"></ion-tab>
+    <ion-tab [root]="tabTipoPago" [rootParams]="params" tabTitle="Tipo de Pago"></ion-tab>
+    <ion-tab [root]="tabResumen" [rootParams]="params" tabTitle="Recibo"></ion-tab>
+  </ion-tabs>
+</ion-content>

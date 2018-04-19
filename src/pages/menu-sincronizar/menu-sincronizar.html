@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-navbar >
+    </ion-navbar>
+  </ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row style="width: 100%; height: 50px;">
+      <ion-col style="width: 50%; height: 50px;">
+        <button full  ion-button round item-end icon-left style="white-space: normal; height: 50px;"  (click)="sincronizarProductosBtn()"><ion-icon name="cart"></ion-icon> Sincronizar Productos</button>
+      </ion-col>
+      <ion-col style="width: 50%; height: 50px;">
+        <button full ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarDlistapreBtn()"><ion-icon name="logo-usd"></ion-icon> Sincronizar Precios</button>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%; height: 50px; margin-top: 5px;">
+      <ion-col style="width: 50%; height: 50px;">
+        <button full  ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarClientesBtn()"><ion-icon name="contacts"></ion-icon> Sincronizar Clientes</button>
+      </ion-col>
+      <ion-col style="width: 50%; height: 50px;">
+        <button full ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarUmedidaBtn()"><ion-icon name="calculator"></ion-icon> Sincronizar U. de Medida</button>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%; height: 50px; margin-top: 5px;">
+      <ion-col style="width: 50%; height: 50px;">
+        <button full ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarPoliticaBtn()"><ion-icon name="clipboard"></ion-icon> Sincronizar Políticas</button>
+      </ion-col>
+      <ion-col style="width: 50%; height: 50px;">
+        <button full ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarTipoProductoBtn()" ><ion-icon name="logo-buffer"></ion-icon> Sincronizar Tipo Producto</button>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%; height: 50px; margin-top: 5px;">
+      <ion-col style="width: 50%; height: 50px;">
+        <button full ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarBodegasBtn()" ><ion-icon name="cube"></ion-icon> Sincronizar Bodegas</button>
+      </ion-col>
+      <ion-col style="width: 50%; height: 50px;">
+        <button full ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarEmisoresBtn()"><ion-icon name="card"  ></ion-icon> Sincronizar Emisores</button>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%; height: 50px; margin-top: 5px;">
+      <ion-col style="width: 50%; height: 50px;">
+        <button full ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarBancoBtn()" ><ion-icon name="home"></ion-icon> Sincronizar Bancos</button>
+      </ion-col>
+      <ion-col style="width: 50%; height: 50px;">
+        <button full ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarTpaBtn()" ><ion-icon name="cash"></ion-icon> Sincronizar Tipos de Pago</button>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%; height: 50px; margin-top: 5px;">
+      <ion-col style="width: 50%; height: 50px;">
+        <button full ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarDocumentoBtn()" ><ion-icon name="document"></ion-icon> Sincronizar Documentos</button>
+      </ion-col>
+      <ion-col style="width: 50%; height: 50px;">
+        <button full ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarImagenesBtn()" ><ion-icon name="images"></ion-icon> Sincronizar Imágenes *</button>
+      </ion-col>
+    </ion-row>
+     <ion-row style="width: 100%; height: 50px; margin-top: 5px;">
+      
+      <ion-col style="width: 50%; height: 50px;">
+          <button full ion-button round item-end icon-left style="white-space: normal; height: 50px;" (click)="sincronizarTablaPreventaBtn()" ><ion-icon name="calendar"></ion-icon> Sincronizar Preventas</button>
+        </ion-col>
+        <ion-col style="width: 50%; height: 50px;">
+          <button full ion-button round item-end icon-left style="height: 50px; white-space: normal;" (click)="sincronizarTodo()" ><ion-icon name="done-all"></ion-icon> Sincronizar Todo</button>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%; height: 50px; margin-top: 5px;">
+        <ion-col style="width: 50%; height: 50px;">
+            <button full ion-button round item-end icon-left style="height: 50px; white-space: normal; color: darkred" (click)="sincronizarTodoManana()" ><ion-icon name="done-all"></ion-icon> Sincronizar Ruta de Mañana</button>
+          </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

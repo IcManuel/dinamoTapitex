@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-item style="background-color: transparent;" no-lines>
+    <ion-label style="font-weight: bold; color:black">Cliente</ion-label>
+    <ion-input (ionChange)="buscarCliente()" type="text" [(ngModel)]="nombreFiltro" placeholder="Ingrese el nombre del cliente"></ion-input>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="font-weight: bold" col-auto>
+        Nombres:
+      </ion-col>
+      <ion-col style="white-space: normal">
+        {{datosCabeceraRec.cliente.nombre}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item>
+    <ion-textarea (ionChange)="cambio()" [(ngModel)]="datosCabeceraRec.observaciones" placeholder="Observaciones">
+    </ion-textarea>
+  </ion-item>
+  <ion-item no-lines>
+    <ion-label style="font-weight: bold; color: black">
+       Documentos: 
+    </ion-label>
+  </ion-item>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item [hidden]="!mostrarF" style="font-size: 20px; font-weight: bold;" no-lines>
+    No existen pendientes
+  </ion-item>
+  <ion-list [hidden]="!mostrarLista">
+    <ion-card *ngFor="let cli of clientes" style="background-color:azure" (click)="mostrarElegido(cli)" tappable>
+      <ion-card-header text-wrap>
+        <div style="font-size: 16px; font-weight: bold; color: #6E6E6E">
+          {{cli.nombre}}
+        </div>
+      </ion-card-header>
+      <ion-card-content>
+        <div style="font-size: 13px;">{{cli.identificacion}}</div>
+        <div style="font-size: 15px; font-weight: bold">Saldo total: $ {{cli.saldo}}</div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-list [hidden]="mostrarLista" >
+    <ion-card *ngFor="let doc of documentos" style="background-color:azure" (click)="verDocumento(doc)" tappable>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-auto>
+             <ion-checkbox checked="doc.todo" [(ngModel)]="doc.todo" (ionChange)="cambioCheck(doc)"></ion-checkbox>
+          </ion-col>
+          <ion-col style="font-size: 18px;" >
+            {{doc.doctran}}
+          </ion-col>
+          <ion-col style="font-size: 12px;" col-auto>
+             {{doc.fechaemi}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-auto>
+            <div style="width: 15%;">
+            </div>
+          </ion-col>
+          <ion-col>
+            Saldo: {{formateo(doc.saldo,2)}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-auto>
+             Cancela: 
+          </ion-col>
+          <ion-col ion-item style="background-color:azure">
+           <ion-input [disabled]="doc.todo" type="number" (ionChange)="cambioCan()" [(ngModel)]="doc.acancelar"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-list>
+</ion-content>

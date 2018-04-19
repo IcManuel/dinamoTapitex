@@ -1,0 +1,56 @@
+<ion-header>
+        <ion-navbar hideBackButton="true">
+                <ion-buttons left>
+                    <button ion-button (click)="doYourStuff()">
+                        <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+                    </button>
+                </ion-buttons>
+    </ion-navbar>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-label style="font-weight: bold; font-size: 15px;">
+                    Lista de Pedidos
+                </ion-label>
+                 <ion-label style="font-weight: bold; font-size: 15px;">
+                    # Pedidos: {{pedidos.length}}
+                </ion-label>
+                <ion-label style="font-weight: bold; font-size: 15px;">
+                    Total :$ {{formateo(total,2)}}
+                </ion-label>
+            </ion-col>
+            
+            <ion-col  style="text-align: right" col-auto>
+                <button ion-button round (click)="subirTodo()">Subir Todo</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-content padding>
+<ion-list [virtualScroll]="pedidos" approxItemHeight="50px">
+    <ion-card *virtualItem="let ped" (click)="mostrarError(ped)" tappable>
+        <ion-grid>
+            <ion-row>
+                <ion-col style="font-weight: bold; color: #6E6E6E;font-size: 14px;" col-auto>
+                    {{ped.nombreCliente}}
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    {{ped.fecha}}
+                </ion-col>
+                <ion-col style="text-align: right; height: 20px;" col-auto>
+                    <button ion-button round style="height: 20px; width: 10px; font-size: 15px;"><ion-icon name="close" (click)="eliminar(ped)"></ion-icon></button>
+                    <button ion-button round style="height: 20px; width: 10px; font-size: 15px;"><ion-icon name="open" (click)="modificar(ped)"></ion-icon></button>
+                    <button ion-button round style="height: 20px; width: 10px; font-size: 15px;"><ion-icon name="cloud-upload" (click)="subirUno(ped)"></ion-icon></button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="font-weight: bold;">
+                    $ {{formateo(ped.total,2)}}
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+</ion-list>
+</ion-content>

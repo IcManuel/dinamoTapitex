@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar (color)="primary">
+    <ion-title>Filtro</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cerrar()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+<ion-list>
+  <ion-item>
+      <ion-label>Con promoción: </ion-label>
+      <ion-toggle color="danger" [(ngModel)]="promoFiltro"></ion-toggle>
+  </ion-item>
+  <ion-item>
+      <ion-label>Nuevos: </ion-label>
+      <ion-toggle [(ngModel)]="nuevo"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <ion-label>Llegados: </ion-label>
+    <ion-toggle [(ngModel)]="llegado"></ion-toggle>
+</ion-item>
+  <ion-item>
+      <ion-label>Preventa</ion-label>
+      <ion-select [(ngModel)]="preventaSelect" interface="popover" style="max-width: 100%;">
+          <ion-option *ngFor="let pre of preventas" [value] = "pre.id">{{pre.nombre}}</ion-option>
+        </ion-select>
+  </ion-item>
+  <ion-item>
+      <ion-label>Modelo</ion-label>
+      <ion-select style="max-width: 100%;" [(ngModel)]="modeloSelect" interface="popover">
+          <ion-option *ngFor="let mod of modelos" [value] = "mod.id">{{mod.nombre}}</ion-option>
+        </ion-select>
+  </ion-item>
+</ion-list>
+  <div text-center>
+    <button  style="margin-top: 5px;" ion-button round large (click)="filtrar()">Filtrar</button>
+  </div> 
+</ion-content>

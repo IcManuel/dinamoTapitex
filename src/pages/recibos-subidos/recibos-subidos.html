@@ -1,0 +1,46 @@
+<ion-header>
+                <ion-navbar >
+                </ion-navbar>
+             
+  <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-label style="font-weight: bold; font-size: 15px;">
+                    Recibos Enviados
+                </ion-label>
+                 <ion-label style="font-weight: bold; font-size: 15px;">
+                    # Recibos: {{recibos.length}}
+                </ion-label>
+            </ion-col>
+            <ion-col  style="text-align: right" col-auto>
+                <button ion-button round (click)="eliminarTodo()">Eliminar Todo</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card *ngFor ="let rec of recibos">
+          <ion-grid>
+              <ion-row>
+                  <ion-col style="font-weight: bold; color: #6E6E6E;font-size: 14px;" col-auto>
+                      {{rec.nombreCliente}}
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      {{rec.fecha}}
+                  </ion-col>
+                  <ion-col style="text-align: right; height: 20px;" col-auto>
+                      <button ion-button round style="height: 20px; width: 10px; font-size: 15px;"><ion-icon name="close" (click)="eliminarRec(rec)"></ion-icon></button>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col style="font-weight: bold;">
+                      $ {{formateo(rec.total,2)}}
+                  </ion-col>
+              </ion-row>
+          </ion-grid>
+      </ion-card>
+</ion-content>

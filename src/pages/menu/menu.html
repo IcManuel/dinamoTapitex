@@ -1,0 +1,21 @@
+<ion-content padding>
+ <button ion-button round style="background-color: #CECECE;color: black"><ion-icon name="exit" (click)="salir()"></ion-icon></button>                           
+ <div style="float: right; font-size: 15px; font-weight: bold">Usuario: {{usuario}}</div>
+ <ion-list padding text-center>
+    <button  ion-button round large full item-end icon-left (click)="irASincronizar()"><ion-icon name="cloud-download"></ion-icon> Sincronizar</button>
+    <br/>
+    <button  ion-button round large full item-end icon-left (click)="irAPedidos()"><ion-icon name="cart"></ion-icon > Pedidos</button>
+    <br/>
+    <button  [hidden]="true"  ion-button round large full item-end icon-left (click)="irASaldos()"><ion-icon name="cash"></ion-icon > Saldos</button>
+      <br/>
+    <button  ion-button round large full item-end icon-left (click)="irARecibos()" [hidden]="!parRecibos"><ion-icon name="cash"></ion-icon> Recibos</button>
+    <br/>
+    <button  ion-button round large full item-end icon-left (click)="ingresar()" [hidden]="!parValStock"><ion-icon name="clipboard"></ion-icon> Inventario</button>
+  </ion-list>
+</ion-content>
+<ion-footer text-center>
+        <div>Versión App: {{versionApp}}</div>
+        <div>Últ. Sinc. Imágenes: {{verionImagen}}</div>
+        <div>Últ. Sinc. Todo: {{versionSincro}}</div>
+    <button color="secondary" ion-button large full (click)="cerrarSesion()">Cerrar sesión</button>
+</ion-footer>

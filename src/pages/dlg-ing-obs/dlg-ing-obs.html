@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar (color)="primary">
+    <ion-title>Observaciones</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cerrar()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-textarea rows="5" [(ngModel)]="obs" placeholder="Observaciones">
+  </ion-textarea>
+  <div text-center>
+    <button  style="margin-top: 5px;" ion-button round large (click)="guardar()">Guardar</button>
+  </div> 
+</ion-content>

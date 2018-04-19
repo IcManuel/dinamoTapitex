@@ -1,0 +1,59 @@
+<ion-header>
+
+  <ion-navbar (color)="primary">
+    <ion-title>Último pedido</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cerrar()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-item no-lines>
+    <ion-label style="font-weight: bold; color: #6E6E6E; font-size: 15px;">
+        {{cliente}}
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label style="font-weight: bold; color:black">
+      Fecha 
+    </ion-label>
+    <ion-label style="text-align: right">
+      {{fecha}}
+    </ion-label>
+  </ion-item>
+  <ion-item no-lines>
+    <ion-label style="font-weight: bold; color:black">
+      Subtotal 
+    </ion-label>
+    <ion-label style="text-align: right">
+     $ {{subtotal}}
+    </ion-label>
+  </ion-item>
+  <ion-item no-lines>
+    <ion-label style="font-weight: bold; color:black">
+      Iva 
+    </ion-label>
+    <ion-label style="text-align: right">
+     $ {{iva}}
+    </ion-label>
+  </ion-item>
+  <ion-item no-lines>
+    <ion-label style="font-weight: bold; color:black">
+      Total 
+    </ion-label>
+    <ion-label style="text-align: right">
+     $ {{total}}
+    </ion-label>
+  </ion-item>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let dpe of dat">
+      <ion-label>
+        <div style="font-size: 18px; color: darkslategray; font-weight: bold">{{dpe.producto}}</div>
+        <div style="font-weight: bold; color: black;">Cantidad : {{dpe.cantidad}}</div>
+        <div style="font-weight: bold; color: black;">Total : $ {{formateo(dpe.total,2)}}</div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

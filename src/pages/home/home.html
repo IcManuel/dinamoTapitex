@@ -1,0 +1,20 @@
+<ion-content padding>
+  <button ion-button round style="background-color: gray;color: black"><ion-icon name="exit" (click)="salir()"></ion-icon></button>
+  <div style="position:absolute; margin-top:55%; width:100%;text-align: center" text-center>    
+    <ion-item style="width: 100%;margin-right: 10%" text-center>
+      <ion-input style="width: 50%" type="password" [(ngModel)]="codigoIngreso" placeholder="CÓDIGO" text-center></ion-input>
+    </ion-item>
+    <br/>
+    <div text-center>
+      <button  style="margin-top: 5px;" ion-button round large (click)="ingresar()">Ingresar</button>
+    </div> 
+    <br/>
+    <div text-center>
+      <button ion-button round large><ion-icon name="ios-construct" (click)="irAParametros()"></ion-icon></button>
+      <button ion-button round large><ion-icon name="ios-contacts" (click)="sincronizarUsuarios()"></ion-icon></button>
+    </div>   
+    <div text-center>
+      <div style="font-size: 12px; font-weight: bold; color: gray">{{version}}</div>  
+    </div>   
+  </div>
+</ion-content>

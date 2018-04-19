@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col  style="font-weight: bold; color: black">
+        Valor a pagar: 
+      </ion-col>
+      <ion-col style="color: black; text-align: right">
+        $ {{formateo(total,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; color: black" col-auto>
+        Tipo de Pago
+      </ion-col>
+      <ion-col>
+        <ion-select [(ngModel)]="idTpa" interface="popover" (ionChange)="cambioTpa()" style="max-width: 100%;">
+          <ion-option *ngFor="let tpa of tiposPago" [value] = "tpa.id">{{tpa.nombre}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row [hidden]="!num_doc.rend">
+      <ion-col style="font-weight: bold" col-auto>
+        # Documento: 
+      </ion-col>
+      <ion-col ion-item>
+        <ion-input type="text" [(ngModel)]="num_doc.valor"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="!num_comprobante.rend">
+      <ion-col style="font-weight: bold" col-auto>
+        # Comprobante: 
+      </ion-col>
+      <ion-col ion-item>
+        <ion-input type="text" [(ngModel)]="num_comprobante.valor"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="!autorizacion.rend">
+      <ion-col style="font-weight: bold" col-auto>
+        Autorización: 
+      </ion-col>
+      <ion-col ion-item>
+        <ion-input type="text" [(ngModel)]="autorizacion.valor"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="!num_factura.rend">
+      <ion-col style="font-weight: bold" col-auto>
+          # Factura: 
+      </ion-col>
+      <ion-col ion-item>
+        <ion-input type="text" [(ngModel)]="num_factura.valor"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="!fecha_ven.rend">
+      <ion-col style="font-weight: bold" col-auto>
+        Fecha Venc.: 
+      </ion-col>
+      <ion-col ion-item>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="fecha_ven.valor"></ion-datetime>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="!fecha_ret.rend">
+      <ion-col style="font-weight: bold" col-auto>
+        Fecha Ret.: 
+      </ion-col>
+      <ion-col ion-item>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="fecha_ret.valor"></ion-datetime>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="!emisor.rend">
+      <ion-col style="font-weight: bold" col-auto>
+        Emisor: 
+      </ion-col>
+      <ion-col>
+        <ion-select [(ngModel)]="emisor.valor" interface="popover" style="max-width: 100%;">
+          <ion-option *ngFor="let emi of emisores" [value] = "emi.id">{{emi.nombre}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="!banco.rend">
+      <ion-col style="font-weight: bold" col-auto>
+        Banco: 
+      </ion-col>
+      <ion-col>
+        <ion-select [(ngModel)]="banco.valor" interface="popover" style="max-width: 100%;">
+          <ion-option *ngFor="let ban of bancos" [value] = "ban._id">{{ban._nombre}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="!num_cuenta.rend">
+      <ion-col style="font-weight: bold" col-auto>
+        # Cuenta: 
+      </ion-col>
+      <ion-col ion-item>
+        <ion-input type="text" [(ngModel)]="num_cuenta.valor"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="!num_cheque.rend">
+      <ion-col style="font-weight: bold" col-auto>
+        # Cheque: 
+      </ion-col>
+      <ion-col ion-item>
+        <ion-input type="number" [(ngModel)]="num_cheque.valor"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col style="font-weight: bold" col-auto>
+        Valor: 
+      </ion-col>
+      <ion-col ion-item>
+        <ion-input type="number" [(ngModel)]="valor"></ion-input>
+      </ion-col>
+      <ion-col>
+        <button ion-button round style="font-size: 15px;" item-end (click)="agregarDetalle()">
+          <ion-icon name="add-circle"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

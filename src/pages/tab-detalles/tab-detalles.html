@@ -1,0 +1,128 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-buttons left>
+            <button ion-button (click)="doYourStuff()">
+                <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+     </ion-navbar>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="codigoFiltro" placeholder="Código de Producto"></ion-input>
+    <button ion-button round style="font-size: 15px;" item-end (click)="buscarPorCodigo()">
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-item>
+  <ion-item no-lines>
+      <ion-input (ionChange)="busqueda()" type="text" [(ngModel)]="nombreFiltro" placeholder="Nombre de Producto"></ion-input>
+  </ion-item>
+</ion-header>
+<ion-content>
+  <ion-list [ngStyle]="{'display': showMe}">
+    <ion-card *ngFor="let prod of productos" style="background-color:azure" (click)="mostrarElegido(prod)" tappable>
+      <ion-card-header text-wrap>
+        <div style="font-size: 14px; font-weight: bold; color: #6E6E6E">
+          {{prod.nombre}}
+        </div>
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content 
+      loadingSpinner="bubbles"
+      loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+  <ion-grid [hidden]="mostrarLista">
+      <ion-row>
+          <ion-col style="font-weight: bold; white-space: normal;color:black">
+              Preventa: 
+          </ion-col>
+            <ion-col>
+                <ion-select [(ngModel)]="preventaSelect" interface="popover" style="max-width: 100%;" (ionChange)="cambioPreventa()">
+                    <ion-option *ngFor="let pre of preventas" [value] = "pre.id">{{pre.nombre}}</ion-option>
+                </ion-select>
+              </ion-col>
+          </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Nombre: 
+      </ion-col>
+      <ion-col style="text-align: right;">
+        {{producto.nombre}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Stock: 
+      </ion-col>
+      <ion-col style="text-align: right;">
+        {{formateo(producto.stock,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Precio (-)iva: 
+      </ion-col>
+      <ion-col style="text-align: right;">
+        $ {{formateo(producto.precio,4)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Precio iva: 
+      </ion-col>
+      <ion-col style="text-align: right;">
+        $ {{formateo(producto.precioIva,4)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black;vertical-align: bottom">
+        Cantidad: 
+      </ion-col>
+      <ion-col ion-item> 
+        <ion-input (ionChange)="ingresoCantidad()" style="height: 12px;font-size: 12px;text-align: right" type="number" [(ngModel)]="cantidad" style="max-width: 100%;" #intCantidad></ion-input>
+      </ion-col>
+      <ion-col col-auto >
+        <button [disabled]="disabled" ion-button round style="font-size: 15px;" item-end (click)="agregarDetalle()">
+          <ion-icon name="add-circle"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Descuento (%): 
+      </ion-col>
+      <ion-col ion-item> 
+        <ion-input (ionChange)="ingresoCantidad()" [disabled]="disabled" type="number" [(ngModel)]="descuento" style="max-width: 100%"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin-top: 10px;">
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Total: 
+      </ion-col>
+      <ion-col style="text-align: right; font-size: 15px; font-weight: bold">
+       $ {{formateo(total,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Unidad: 
+      </ion-col>
+      <ion-col> 
+        <ion-select (ionChange)="calcularTotal()" [disabled]="disabled" [(ngModel)]="producto.umedida" interface="popover" style="max-width: 100%;">
+          <ion-option *ngFor="let uni of unidades" [value] = "uni.id_unidad">{{uni.nombre_unidad}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold; white-space: normal;color:black">
+        Bodega: 
+      </ion-col>
+      <ion-col> 
+        <ion-select [disabled]="disabled" [(ngModel)]="bodega" interface="popover" style="max-width: 100%;">
+          <ion-option *ngFor="let bod of bodegas" [value] = "bod.id">{{bod.nombre}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

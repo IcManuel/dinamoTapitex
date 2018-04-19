@@ -1,0 +1,48 @@
+<ion-header padding style="background-color: transparent;">
+    <ion-navbar hideBackButton="true">
+        <ion-buttons left>
+            <button ion-button (click)="doYourStuff()">
+                <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-buttons right>
+            <ion-label style="font-weight: bold; font-size: 12px;">#Clientes: {{clientesAux.length}}</ion-label>    
+        </ion-buttons>
+    </ion-navbar>
+    <ion-item style="background-color: transparent;" no-lines>
+      <ion-label style="font-weight: bold; color:black" >Todos los clientes</ion-label>
+      <ion-toggle [(ngModel)]="todos" (ionChange)="cambioTodos()"></ion-toggle>
+    </ion-item>
+    <ion-item style="background-color: transparent;" no-lines>
+      <ion-label style="font-weight: bold; color:black">Zona</ion-label>
+      <ion-select [(ngModel)]="zonaSelect" interface="popover" (ionChange)="cambioTodos()">
+      <ion-option *ngFor="let zona of zonas" [value] = "zona.id">{{zona.nombre}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item style="background-color: transparent;" no-lines>
+      <ion-label style="font-weight: bold; color:black">Cliente</ion-label>
+      <ion-input (ionChange)="setQuantity()" type="text" [(ngModel)]="nombreFiltro" placeholder="Ingrese el nombre del cliente"></ion-input>
+    </ion-item>
+</ion-header>
+<ion-content padding>   
+  <ion-list [virtualScroll]="clientes" approxItemHeight="100px">
+    <ion-card (press)="abrirDocumentos(cliente)"  *virtualItem="let cliente" (tap)="seleccionarCliente(cliente)" tappable [ngStyle]="{'background-color': cliente.color}">
+      <ion-card-header text-wrap>
+        <div style="font-size: 16px; font-weight: bold; color: #6E6E6E">
+          {{cliente.nombre}}
+        </div>
+      </ion-card-header>
+       <ion-card-content>
+         <div style="font-size: 13px;">{{cliente.identificacion}}</div>
+         <div style="font-size: 14px;font-weight: bold; white-space: normal;color: #0B2161">{{cliente.dir}}</div>
+         <div style="font-size: 12px;font-weight: bold; white-space: normal;color: darkslategrey">Saldo: $ {{formateo(cliente.saldodeuda,2)}}</div>
+        </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-infinite-scroll [enabled]="clientes.length !== clientesAux.length && clientes.length > 0" (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content 
+      loadingSpinner="bubbles"
+      loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+</ion-content>

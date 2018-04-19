@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-item style="text-align:right"  no-lines>
+    <button ion-button round style="font-size: 20px;"><ion-icon name="close" (click)="eliminarRecibo()"></ion-icon></button>
+    <button [disabled]="modificacion" ion-button round style="font-size: 20px;"><ion-icon name="checkbox" (click)="guardarTodo()"></ion-icon></button>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="font-weight: bold">
+        Valor a pagar
+      </ion-col>
+      <ion-col style="text-align: right">
+        {{formateo(valorAPAgar,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold">
+        Total
+      </ion-col>
+      <ion-col style="text-align: right">
+        {{formateo(total,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold">
+        Observaciones
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="white-space: normal">
+       {{datosCabeceraRec.observaciones}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content padding>
+  <ion-list [virtualScroll]="detalles" approxItemHeight="50px">
+    <ion-card *virtualItem="let det">
+       <ion-grid>
+         <ion-row>
+           <ion-col style="font-weight: bold; color: darkgray; white-space: normal">
+             {{det.nombreTipo}}
+           </ion-col>
+            <ion-col style="text-align: right; vertical-align: top" col-auto>
+               <button ion-button round style="font-size: 12px; height: 15px; width: 15px;"><ion-icon name="close" (click)="eliminarDetalle(det)"></ion-icon></button>
+           </ion-col>
+         </ion-row>
+          <ion-row>
+            <ion-col style="font-weight: bold">
+              Total: 
+            </ion-col>
+            <ion-col style="text-align: right">
+              $ {{formateo(det.valortotal,2)}}
+            </ion-col>
+          </ion-row>
+       </ion-grid>
+    </ion-card>
+  </ion-list>
+</ion-content>

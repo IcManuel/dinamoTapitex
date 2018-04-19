@@ -1,0 +1,8 @@
+{
+  "name": "dinamoMovil",
+  "app_id": "a18ff12c",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

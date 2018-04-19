@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar >
+    </ion-navbar>
+    <ion-item text-center no-lines>
+       <button ion-button round (click)="subirTodo()">Subir Todo</button>
+    </ion-item>
+</ion-header>
+<ion-content padding>
+  <ion-grid *ngFor="let tpa of tiposPago" [ngStyle]="{'background-color': tpa.color}" >
+      <ion-row >
+        <ion-col style="font-weight: bold" col-auto>
+          {{tpa.nombre}}
+        </ion-col>
+        <ion-col style="text-align: right">
+          $ {{formateo(tpa.valor,2)}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  <ion-list>
+      <ion-card *ngFor ="let rec of recibos" (click)="mostrarError(rec)" tappable>
+          <ion-grid>
+              <ion-row>
+                  <ion-col style="font-weight: bold; color: #6E6E6E;font-size: 14px;" col-auto>
+                      {{rec.nombreCliente}}
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                      {{rec.fecha}}
+                  </ion-col>
+                  <ion-col style="text-align: right; height: 20px;" col-auto>
+                      <button ion-button round style="height: 20px; width: 10px; font-size: 15px;"><ion-icon name="close" (click)="eliminarRec(rec)"></ion-icon></button>
+                      <button ion-button round style="height: 20px; width: 10px; font-size: 15px;"><ion-icon name="cloud-upload" (click)="subirUno(rec)"></ion-icon></button>
+                  </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col style="font-weight: bold;">
+                      $ {{formateo(rec.total,2)}}
+                  </ion-col>
+              </ion-row>
+          </ion-grid>
+      </ion-card>
+  </ion-list>
+</ion-content>

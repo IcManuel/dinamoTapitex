@@ -1,0 +1,20 @@
+<ion-list [hidden]="!mostrarLista" [virtualScroll]="productos" >
+      <ion-card width-50 *virtualItem="let prod" (click)="mostrarElegido(prod)" tappable>
+        <img [src]="prod.mostrar"/> 
+        <ion-row>
+            <ion-col>
+              <ion-note style="font-weight: bold; color: gray; font-size: 15px; text-align: justify">
+                {{prod.codigo}}
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        <ion-row>
+          <ion-col>
+
+            <ion-note style="font-weight: bold; color: gray; font-size: 12px; text-align: justify">
+              {{prod.nombre}}
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-list> 

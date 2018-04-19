@@ -1,0 +1,9 @@
+
+<ion-content padding>
+  <ion-tabs  primary #myTabs> 
+    <ion-tab [root]="tabCliente" [rootParams]="params" tabTitle="Cliente" [show]="true"></ion-tab>
+    <ion-tab [root]="tabCatalogo" [rootParams]="params" tabTitle="Catálogo" [show]="true"></ion-tab>
+    <ion-tab [root]="tabDetalles" [rootParams]="params" tabTitle="Detalles" [show]="false"></ion-tab>
+    <ion-tab [root]="tabResumen" [rootParams]="params" tabTitle="Pedido"></ion-tab>
+  </ion-tabs>
+</ion-content>

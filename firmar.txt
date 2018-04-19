@@ -1,0 +1,12 @@
+io.ionic.app.dinamomovil.tap
+fondo_android.png
+activar tab_cliente
+Clave --> 21630ic. 
+android-versionCode="25" id="io.ionic.app.dinamomovil.tap" version="1.1.5"
+
+cd C:\Users\icreativa\Documents\GitHub\DinamoMovil
+ionic cordova build --prod --release android
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore D:\Tapitex\dinamoTapitex.keystore C:\Users\icreativa\Documents\GitHub\DinamoMovil\platforms\android\build\outputs\apk\android-armv7-release-unsigned.apk dinamoTapitex
+cd C:\Users\icreativa\Documents\android-sdks\build-tools\27.0.3 
+del D:\Tapitex\dinamoTapitex.apk
+zipalign -v 4 C:\Users\icreativa\Documents\GitHub\DinamoMovil\platforms\android\build\outputs\apk\android-armv7-release-unsigned.apk D:\Tapitex\dinamoTapitex.apk

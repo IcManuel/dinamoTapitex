@@ -1,0 +1,137 @@
+<ion-header #head>
+    
+    <ion-fab top right #btn>
+      <ion-row>
+        <ion-col class="no-padding">
+            <button ion-fab mini (click)="limpiarFiltros()" color="danger" >
+                <ion-icon name="sync" >
+                </ion-icon>
+            </button>
+        </ion-col>
+        <ion-col class="no-padding">
+            <button id="notification-button"  ion-fab mini (click)="abrirFiltro()">
+                <ion-icon name="options" >
+                    <ion-badge [hidden] = "!tieneFiltro" id="notifications-badge" color="danger">!</ion-badge>
+                </ion-icon>
+              </button>
+          </ion-col>
+      </ion-row>
+      
+    </ion-fab>
+
+    <ion-navbar hideBackButton="true">
+        <ion-title style="font-size: 5px">Total: $ {{formateo(totalFinal,2)}} - # Ítems: {{cantProd}} </ion-title>
+        <ion-buttons left>
+            <button ion-button (click)="doYourStuff()">
+                <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>        
+     </ion-navbar>
+      <ion-grid>
+          <ion-row>
+              <ion-col width-50>
+                  <ion-select style="max-width: 100%; font-size: 15px;" [(ngModel)]="clasificacionSelect" interface="popover" (ionChange)="cambioClasificacion()">
+                      <ion-option *ngFor="let cla of clasificaciones" [value] = "cla.id">{{cla.nombre}}</ion-option>
+                  </ion-select>
+              </ion-col>
+              <ion-col width-50>
+                  <ion-select style="max-width: 100%; font-size: 15px;"  [(ngModel)]="marcaSelect" interface="popover" (ionChange)="cambioMarcas()">
+                      <ion-option *ngFor="let mar of marcas" [value] = "mar.id">{{mar.nombre}}</ion-option>
+                  </ion-select>
+                </ion-col>
+              </ion-row>      
+      </ion-grid> 
+    <ion-item no-line>
+      <ion-input style="max-width: 75%" type="text" [(ngModel)]="codigoFiltro" placeholder="Búsqueda"></ion-input>
+      <ion-toggle color="secondary" [(ngModel)]="soloPedidos" (ionChange)="buscarPorCodigo()"></ion-toggle>
+      <button ion-button round style="font-size: 25px;" item-end (click)="buscarPorCodigo()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button round style="font-size: 25px;" item-end (click)="agregarAlCarrito()">
+          <ion-icon name="cart"></ion-icon>
+        </button>
+    </ion-item>
+</ion-header>
+<ion-content >
+  <div style="height: 100%;" >
+      <ion-list  #virtualScroll [virtualScroll]="productos" 
+        approxItemHeight="300px" bufferRatio="9">
+        <ion-row wrap>
+          <ion-col width-33 *virtualItem="let prod" >
+            <ion-card style="width: 100%;" #intCard [ngStyle]="{'background-color': prod.color}" >
+              <div style="position:relative" (dblclick)="mostrarElegido2(prod)">
+                <!--<ion-img [src]="prod.mostrar"></ion-img>  -->
+                <img [src]="prod.mostrar" />
+                <div class="topleft">$ {{formateo(prod.precioIva,2)}}</div>
+                <div class="topright" [hidden]="!prod.nuevo" >NUEVO</div>
+                <div class="topright" [hidden]="!prod.llegado" >LLEGADO</div>
+                <div class="bottomleft" [hidden]="!prod.promo" >PROMO!</div>
+                <div class="bottomright" [hidden]="!prod.ti">$ {{formateo(prod.total,2)}}</div>
+              </div>
+              
+                <ion-row>
+                    <ion-col width-50>
+                      <ion-note style="font-weight: bold; color: #000750; font-size: 11px; text-align: justify">
+                        {{prod.codigo}}
+                      </ion-note>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                      <ion-col col-auto>
+                        <ion-note style="font-weight: bold; color: black; font-size: 10px; text-align: justify">
+                          Stock: {{prod.stock}}
+                        </ion-note>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col col-auto>
+                        <ion-note style="white-space: normal; color: black; font-size: 10px; text-align: justify">
+                           {{prod.empaque}}
+                        </ion-note>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col col-auto>
+                        <ion-note style="white-space: normal; color: black; font-size: 10px; text-align: justify">
+                           {{prod.fechaDispon}}
+                        </ion-note>
+                      </ion-col>
+                      
+                    </ion-row>
+                <ion-row>
+                  <ion-col style="overflow: hidden;height: 4em;line-height: 1em; ">
+                    <ion-note style="font-weight: bold; color: gray; font-size: 2vw; text-align: justify">
+                      {{prod.nombre}}
+                    </ion-note>
+                  </ion-col>
+                </ion-row>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col col-33>
+                        <button style="font-size: 18px" ion-button item-start clear round (click)="disminuir(prod)">
+                            <ion-icon name="remove-circle"></ion-icon>
+                          </button>
+                    </ion-col>
+                    <ion-col col-33 style="text-align: center">
+                      <ion-input [(ngModel)]="prod.cantidad" (ionFocus)="clickCantidad2(prod)" type="number" (ionBlur)="onBlurMethod(prod)" style="text-align:center">
+                      </ion-input>
+                    </ion-col>
+                    <ion-col col-33>
+                        <button style="font-size: 18px" ion-button item-end clear round  (click)="aumentar(prod)" >    
+                            <ion-icon name="add-circle"></ion-icon>
+                          </button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+            </ion-card>
+            </ion-col>
+        </ion-row>
+      </ion-list>
+    </div>
+    <ion-infinite-scroll [enabled]="productosAux.length !== productos.length && productos.length > 0" (ionInfinite)="infinitamente($event)">
+      <ion-infinite-scroll-content 
+        loadingSpinner="bubbles"
+        loadingText="Cargando...">
+      </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

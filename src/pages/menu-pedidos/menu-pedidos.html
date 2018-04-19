@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-buttons left>
+            <button ion-button (click)="doYourStuff()">
+                <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list padding text-center>
+    <button  ion-button round large full item-end icon-left (click)="irAPedidos()"><ion-icon name="cart"></ion-icon> Pedidos</button>
+    <br/>
+    <button  ion-button round large full item-end icon-left (click)="irASubir()"><ion-icon name="cloud-upload"></ion-icon > Subir Pedidos</button>
+    <br/>
+    <button  ion-button round large full item-end icon-left (click)="irAEnviados()"><ion-icon name="cloud-done"></ion-icon> Pedidos Subidos</button>
+    <br/>
+  </ion-list>
+</ion-content>

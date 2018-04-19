@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="font-weight: bold">
+        Total de Pedidos: 
+      </ion-col>
+      <ion-col style="text-align: left">
+        {{pedidos.length}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold">
+        Total en valores: 
+      </ion-col>
+      <ion-col style="text-align: left">
+        $ {{formateo(total,2)}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let det of productos">
+    <ion-grid>
+      <ion-row>
+        <ion-col style="font-weight: bold; color: darkgray; white-space: normal">
+              {{det.nombreProducto}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="font-weight: bold">
+                Cantidad: 
+        </ion-col>
+        <ion-col style="text-align: right">
+                {{det.cantidad}}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="font-weight: bold">
+                Total: 
+        </ion-col>
+        <ion-col style="text-align: right">
+                $ {{formateo(det.total,2)}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

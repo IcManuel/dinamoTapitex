@@ -1,0 +1,59 @@
+<ion-header style="background-color: transparent;">
+  <ion-navbar hideBackButton="true">
+      <ion-buttons end>
+          <button ion-button icon-only (click)="cerrar()">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-buttons>     
+  </ion-navbar>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-auto style="font-weight: bold;">
+        Cliente Selec:
+      </ion-col>
+      <ion-col col-auto>
+          {{clienteSelect.nombre}}
+      </ion-col>
+      <ion-col col-auto style="font-weight: bold;">
+          Saldo Total: 
+      </ion-col>
+      <ion-col col-auto>
+           $ {{formateo(clienteSelect.saldodeuda,2)}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item no-lines style="background-color: transparent;">
+    <ion-label style="font-weight: bold; color: black">
+       Documentos: 
+    </ion-label>
+  </ion-item>
+</ion-header>
+<ion-content padding>
+    <ion-list [virtualScroll]="documentos" approxItemHeight="100px">
+        <ion-card  *virtualItem="let ddo" style="background-color: transparent;">
+            <ion-card-header text-wrap>
+                <div style="font-size: 20px; font-weight: bold; color: #6E6E6E">
+                  {{ddo.doctran}}
+                </div>
+              </ion-card-header>
+              <ion-card-content>
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col col-auto style="font-weight: bold; font-size: 14px;">Fecha Emisión: </ion-col>
+                      <ion-col col-auto style="font-size: 14px;">{{ddo.fechaemi}} </ion-col>
+                      <ion-col col-auto style="font-weight: bold; font-size: 14px;">Fecha Vence: </ion-col>
+                      <ion-col col-auto style="font-size: 14px;">{{ddo.fechaven}} </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col col-auto style="font-weight: bold; font-size: 16px;">
+                        Saldo: 
+                      </ion-col>
+                      <ion-col col-auto style="font-size: 16px; color: rgb(3, 3, 58)">
+                          $ {{formateo(ddo.saldo,2)}} 
+                        </ion-col>
+                    </ion-row>
+                  </ion-grid>
+              </ion-card-content>
+        </ion-card>
+    </ion-list>
+</ion-content>

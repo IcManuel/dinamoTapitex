@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar >
+    </ion-navbar>
+  </ion-header>
+<ion-content>
+  <div text-center>
+     <button ion-button round large [hidden]="!admin" (click)="cargarArchivo()"><ion-icon name="archive" ></ion-icon>Actualizar Archivo</button>
+  </div>
+  <div text-center>
+    <button ion-button round large (click)="eliminarPrecios()"><ion-icon name="trash" ></ion-icon>Eliminar Precios</button>
+ </div>
+  <div text-center>
+      <button ion-button round large [hidden]="!admin" (click)="eliminarPedidosEliminados()"><ion-icon name="close" ></ion-icon>Borrar pedidos en estado 2</button>
+   </div>
+  <ion-list padding> 
+    <ion-item>
+      <ion-label color="primary" floating>Servidor</ion-label>
+      <ion-input type="text" [(ngModel)]="parServidor.valor" [disabled]="!admin"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>Puerto</ion-label>
+      <ion-input type="text" [(ngModel)]="parPuerto.valor" [disabled]="!admin"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>Nro. Ítems</ion-label>
+      <ion-input type="number" [(ngModel)]="parItems.valor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>Iva</ion-label>
+      <ion-input type="number" [(ngModel)]="parIva.valor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="parEmail.valor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Repetir Ítem</ion-label>
+      <ion-checkbox color="dark" checked="parRepItem.valor" [(ngModel)]="parRepItem.valor"></ion-checkbox>
+    </ion-item>
+    <ion-item [hidden]="true">
+      <ion-label>Validar Stock</ion-label>
+      <ion-checkbox color="dark" checked="parValStock.valor" [(ngModel)]="parValStock.valor"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Recibos</ion-label>
+      <ion-checkbox color="dark" checked="parRecibos.valor" [(ngModel)]="parRecibos.valor"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ocultar campos</ion-label>
+      <ion-checkbox color="dark" checked="parCatalogo.valor" [(ngModel)]="parCatalogo.valor"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <div text-center>
+    <button ion-button round large (click)="guardarCambios()"><ion-icon name="archive" ></ion-icon> Guardar</button>
+  </div>
+   
+</ion-content>

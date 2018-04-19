@@ -1,0 +1,99 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-buttons left>
+            <button ion-button (click)="doYourStuff()">
+                <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+     </ion-navbar>
+  <ion-item style="text-align:right"  no-lines>
+    <button ion-button round style="font-size: 20px;"><ion-icon name="close" (click)="eliminarPedido()"></ion-icon></button>
+    <button [disabled]="modificacion" ion-button round style="font-size: 20px;"><ion-icon name="checkbox" (click)="guardarAntes()"></ion-icon></button>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="font-weight: bold">
+        Subtotal
+      </ion-col>
+      <ion-col style="text-align: right">
+       $ {{formateo(subtotal,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold">
+        Descuento
+      </ion-col>
+      <ion-col style="text-align: right">
+       $ {{formateo(descuento,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold">
+        Sub Neto: 
+      </ion-col>
+      <ion-col style="text-align: right">
+       $ {{formateo(subNeto,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold">
+        Iva {{parIva.valor}} %
+      </ion-col>
+      <ion-col style="text-align: right">
+       $ {{formateo(iva,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold">
+        Total
+      </ion-col>
+      <ion-col style="text-align: right">
+       $ {{formateo(total,2)}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="font-weight: bold">
+        Observaciones
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="white-space: normal">
+       {{datosCabecera.observaciones}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-card *ngFor="let det of detalles">
+       <ion-grid>
+         <ion-row>
+           <ion-col style="font-weight: bold; color: darkgray; white-space: normal">
+             {{det.nombreProducto}}
+           </ion-col>
+            <ion-col style="text-align: right; vertical-align: top" col-auto>
+               <button ion-button round style="font-size: 12px; height: 15px; width: 15px;"><ion-icon name="close" (click)="eliminarDetalle(det)"></ion-icon></button>
+           </ion-col>
+         </ion-row>
+
+          <ion-row>
+            <ion-col style="font-weight: bold">
+              Cantidad: 
+            </ion-col>
+            <ion-col style="text-align: right">
+              {{det.cantidad}} {{det.nombreUnidad}} 
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="font-weight: bold">
+              Total: 
+            </ion-col>
+            <ion-col style="text-align: right">
+              $ {{formateo(det.total,2)}}
+            </ion-col>
+          </ion-row>
+       </ion-grid>
+    </ion-card>
+  </ion-list>
+</ion-content>

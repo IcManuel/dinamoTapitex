@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-buttons left>
+            <button ion-button (click)="doYourStuff()">
+                <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+     </ion-navbar>
+  <ion-item style="text-align:right"  no-lines>
+    <button ion-button round style="font-size: 20px;"><ion-icon name="search" (click)="presentProfileModal()"></ion-icon></button>
+    <button [disabled]="modificacion" ion-button round style="font-size: 20px;"><ion-icon name="add-circle" (click)="crearNuevoCliente()"></ion-icon></button>
+  </ion-item>
+</ion-header>
+<ion-content padding>
+    <ion-item>
+      <ion-label style="font-weight: bold; color: #6E6E6E; font-size: 15px;">
+        {{cliente.nombre}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label style="font-weight: bold; color:black">Política</ion-label>
+      <ion-select [(ngModel)]="datosCabecera.idpol" interface="popover" (ionChange)="cambio()">
+      <ion-option *ngFor="let pol of politicas" [value] = "pol.id">{{pol.nombre}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label style="font-weight: bold; color:black">
+        Días Plazo 
+      </ion-label>
+      <ion-label style="text-align: right">
+        {{cliente.diasplazo}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label style="font-weight: bold; color:black">
+        Descuento
+      </ion-label>
+      <ion-input (ionChange)="cambio()" type="number" [(ngModel)]="datosCabecera.descuento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label style="font-weight: bold; color:black">Novedad</ion-label>
+      <ion-select [(ngModel)]="datosCabecera.novedad" interface="popover" (ionChange)="cambio()">
+      <ion-option *ngFor="let nov of novedades" [value] = "nov.id">{{nov.nombre}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label>Obsequio</ion-label>
+      <ion-checkbox color="dark" checked="datosCabecera.obsequio" [(ngModel)]="datosCabecera.obsequio" (ionChange)="cambio()"></ion-checkbox>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label style="white-space: normal; color:#0B2161; font-size: 13px;">
+        <div style="font-weight: bold; color:black">Dirección:</div> {{cliente.dir}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-textarea (ionChange)="cambio()" [(ngModel)]="datosCabecera.observaciones" placeholder="Observaciones">
+      </ion-textarea>
+    </ion-item>
+</ion-content>

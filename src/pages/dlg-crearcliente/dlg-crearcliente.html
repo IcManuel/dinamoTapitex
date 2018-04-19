@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar (color)="primary">
+    <ion-title>Nuevo Cliente</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cerrar()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-item>
+    <ion-label floating>Identificación</ion-label>
+    <ion-input type="tel" [(ngModel)]="clienteNuevo.identificacion" (blur)="buscarPorId()"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Apellidos</ion-label>
+    <ion-input type="text" [(ngModel)]="clienteNuevo.apellidos"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Nombres</ion-label>
+    <ion-input type="text" [(ngModel)]="clienteNuevo.nombres"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Nombre Comercial</ion-label>
+    <ion-input type="text" [(ngModel)]="clienteNuevo.nombreComercial"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Teléfono</ion-label>
+    <ion-input type="tel" [(ngModel)]="clienteNuevo.telefono"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Mail</ion-label>
+    <ion-input type="email" [(ngModel)]="clienteNuevo.mail"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Dirección</ion-label>
+    <ion-input type="text" [(ngModel)]="clienteNuevo.direccion"></ion-input>
+  </ion-item>
+   <ion-item>
+    <ion-label floating>Fecha de Nacimiento</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="clienteNuevo.fechaNacimiento"></ion-datetime>
+  </ion-item>
+  <ion-item>
+      <ion-label style="font-weight: bold; color:black" floating>Canal</ion-label>
+      <ion-select [(ngModel)]="clienteNuevo.canal" interface="popover">
+      <ion-option *ngFor="let can of canales" [value] = "can.id">{{can.nombre}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label style="font-weight: bold; color:black" floating>Política</ion-label>
+      <ion-select [(ngModel)]="clienteNuevo.politica" interface="popover">
+      <ion-option *ngFor="let pol of politicas" [value] = "pol.id">{{pol.nombre}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <div text-center>
+      <button  style="margin-top: 5px;" ion-button round large (click)="guardar()">Guardar</button>
+    </div> 
+</ion-content>
